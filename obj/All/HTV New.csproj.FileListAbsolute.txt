@@ -1,0 +1,22 @@
+C:\Users\Kong_mono\documents\visual studio 2012\Projects\News\News\obj\All\App.g.cs
+C:\Users\Kong_mono\documents\visual studio 2012\Projects\News\News\obj\All\ChapterPage.g.cs
+C:\Users\Kong_mono\documents\visual studio 2012\Projects\News\News\obj\All\ChannelDetail.g.cs
+C:\Users\Kong_mono\documents\visual studio 2012\Projects\News\News\obj\All\AlbumsPage.g.cs
+C:\Users\Kong_mono\documents\visual studio 2012\Projects\News\News\obj\All\AlbumsDetailPage.g.cs
+C:\Users\Kong_mono\documents\visual studio 2012\Projects\News\News\obj\All\ArchivePage.g.cs
+C:\Users\Kong_mono\documents\visual studio 2012\Projects\News\News\obj\All\AddChannelPage.g.cs
+C:\Users\Kong_mono\documents\visual studio 2012\Projects\News\News\obj\All\MusicPage.g.cs
+C:\Users\Kong_mono\documents\visual studio 2012\Projects\News\News\obj\All\DaraNewsDetailPage.g.cs
+C:\Users\Kong_mono\documents\visual studio 2012\Projects\News\News\obj\All\DaraNewsPage.g.cs
+C:\Users\Kong_mono\documents\visual studio 2012\Projects\News\News\obj\All\SynopsisDetailPage.g.cs
+C:\Users\Kong_mono\documents\visual studio 2012\Projects\News\News\obj\All\eNewsDetailPage.g.cs
+C:\Users\Kong_mono\documents\visual studio 2012\Projects\News\News\obj\All\LiveTvDetailPage.g.cs
+C:\Users\Kong_mono\documents\visual studio 2012\Projects\News\News\obj\All\MainPage.g.cs
+C:\Users\Kong_mono\documents\visual studio 2012\Projects\News\News\obj\All\HClusiveDetailPage.g.cs
+C:\Users\Kong_mono\documents\visual studio 2012\Projects\News\News\obj\All\DaraDetail.g.cs
+C:\Users\Kong_mono\documents\visual studio 2012\Projects\News\News\obj\All\Splashscreen.g.cs
+C:\Users\Kong_mono\documents\visual studio 2012\Projects\News\News\obj\All\PlayerPage.g.cs
+C:\Users\Kong_mono\documents\visual studio 2012\Projects\News\News\obj\All\ShareContentPage.g.cs
+C:\Users\Kong_mono\documents\visual studio 2012\Projects\News\News\obj\All\News.g.resources
+C:\Users\Kong_mono\documents\visual studio 2012\Projects\News\News\obj\All\News.Resources.AppResources.resources
+C:\Users\Kong_mono\documents\visual studio 2012\Projects\News\News\obj\All\HTV New.csproj.GenerateResource.Cache

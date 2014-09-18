@@ -1,0 +1,119 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="News.AlbumsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:controlsPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False"
+    Style="{StaticResource TransitionPageStyle}">
+
+    <phone:PhoneApplicationPage.Resources>
+        <FontFamily x:Key="MyCustomFont">/Fonts/TBold.ttf#TBlod</FontFamily>
+
+        <DataTemplate x:Key="CustomListTemplate">
+            <Grid Width="400">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="{Binding album_title}" TextTrimming="WordEllipsis" TextWrapping="Wrap" TextAlignment="Left" Style="{StaticResource FontStyleListItemTitle}" Height="48"  Margin="7,0,20,0" HorizontalAlignment="Stretch" />
+                <Image Grid.Row="0"  Source="/Assets/icn_arrrow_next.png" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+        
+        <ControlTemplate x:Key="PanoramaControlTemplate1" TargetType="controls:Panorama">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <controlsPrimitives:PanningBackgroundLayer x:Name="BackgroundLayer" Grid.RowSpan="2" HorizontalAlignment="Left">
+                    <Border x:Name="background" Background="{TemplateBinding Background}" CacheMode="BitmapCache"/>
+                </controlsPrimitives:PanningBackgroundLayer>
+
+                <Grid Grid.RowSpan="2" Background="#00000000"/>
+
+                <controlsPrimitives:PanningTitleLayer x:Name="TitleLayer" Grid.Row="0" HorizontalAlignment="Left"  Margin="20,-5,0,9"
+    				Content="{TemplateBinding Title}" ContentTemplate="{TemplateBinding TitleTemplate}" 
+    				FontSize="90" FontFamily="{StaticResource MyCustomFont}" CacheMode="BitmapCache" Foreground="{StaticResource Color_03}"/>
+
+                <controlsPrimitives:PanningLayer x:Name="ItemsLayer" Grid.Row="1" HorizontalAlignment="Left">
+                    <ItemsPresenter x:Name="items"/>
+                </controlsPrimitives:PanningLayer>
+            </Grid>
+        </ControlTemplate>
+
+        <Style x:Key="PanoramaItemStyle1" TargetType="controls:PanoramaItem">
+            <Setter Property="CacheMode" Value="BitmapCache"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="controls:PanoramaItem">
+                        <Grid Background="{TemplateBinding Background}" Margin="12,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <ContentControl x:Name="header" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" FontSize="40" FontFamily="{StaticResource MyCustomFont}" HorizontalAlignment="Left" Margin="10,15,0,26" Foreground="{StaticResource Color_04}">
+                                <ContentControl.RenderTransform>
+                                    <TranslateTransform x:Name="headerTransform"/>
+                                </ContentControl.RenderTransform>
+                            </ContentControl>
+                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" Grid.Row="1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </phone:PhoneApplicationPage.Resources>
+
+    <phone:PhoneApplicationPage.FontFamily>
+        <StaticResource ResourceKey="PhoneFontFamilyNormal"/>
+    </phone:PhoneApplicationPage.FontFamily>
+    <phone:PhoneApplicationPage.FontSize>
+        <StaticResource ResourceKey="PhoneFontSizeNormal"/>
+    </phone:PhoneApplicationPage.FontSize>
+    <phone:PhoneApplicationPage.Foreground>
+        <StaticResource ResourceKey="PhoneForegroundBrush"/>
+    </phone:PhoneApplicationPage.Foreground>
+    
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/background.jpg" Stretch="Fill"/>
+        </Grid.Background>
+
+        <controls:Panorama x:Name="HClusivePanorama" Title="AppName" Foreground="#FF87C80A" Template="{StaticResource PanoramaControlTemplate1}">
+            <controls:Panorama.Background>
+                <ImageBrush x:Name="bg_img" ImageSource="/Assets/background.jpg" Stretch="UniformToFill" AlignmentY="Top"/>
+            </controls:Panorama.Background>
+
+            <controls:PanoramaItem x:Name="PanoramaItem" Header="Title" Style="{StaticResource PanoramaItemStyle1}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <ListBox Grid.Row="0" x:Name="ListBox" ItemTemplate="{StaticResource CustomListTemplate}" SelectionChanged="ListBox_SelectionChanged"/>
+
+                    <!--LoadingPanel-->
+                    <Grid x:Name="LoadingPanel_HClusiveList"  Visibility="Collapsed">
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                            <TextBlock Name="loadingLabel_List" Text="Loading . . ." Foreground="White" HorizontalAlignment="Center" />
+                            <toolkit:PerformanceProgressBar Name="loadingProgressBar_List" IsIndeterminate="True" Margin="0,10,0,0" />
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </controls:PanoramaItem>
+
+        </controls:Panorama>
+    </Grid>
+
+</phone:PhoneApplicationPage>

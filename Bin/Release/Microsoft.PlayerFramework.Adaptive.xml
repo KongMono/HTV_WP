@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.PlayerFramework.Adaptive</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.PlayerFramework.Adaptive.AdaptivePlugin">
+            <summary>
+            Provides an optional plugin to connect the SmoothStreamingMediaElement to the MediaPlayer
+            </summary>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.Adaptive.AdaptivePlugin.#ctor">
+            <summary>
+            Creates a new instance of AdaptivePlugin.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.Adaptive.AdaptivePlugin.Load">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.PlayerFramework.Adaptive.AdaptivePlugin.Update(Microsoft.PlayerFramework.IMediaSource)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.PlayerFramework.Adaptive.AdaptivePlugin.Unload">
+            <inheritdoc />
+        </member>
+        <member name="P:Microsoft.PlayerFramework.Adaptive.AdaptivePlugin.Manager">
+            <summary>
+            Gets the AdaptiveStreamingManager instance used to broker communication between the SmoothStreamingMediaElement and the MediaPlayer
+            </summary>
+        </member>
+        <member name="P:Microsoft.PlayerFramework.Adaptive.AdaptivePlugin.AutoRestrictTracks">
+            <summary>
+            Gets or sets whether to automatically restrict tracks unsuitable for platform and device. Sometimes the app knows best and should perform this duty itself.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PlayerFramework.Adaptive.AdaptivePlugin.StartupBitrate">
+            <summary>
+            Gets or sets the startup bitrate to be used. This is useful for starting at a higher quality when you know the user has a good connection.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PlayerFramework.Adaptive.AdaptivePlugin.DownloaderPlugin">
+            <summary>
+            Gets or set the DownloaderPlugin to be used.
+            This is a class that allows you to intercept each request to the Smooth Streaming SDK before it tries to process the data.
+            Note: IDownloaderPlugin just adapts ISmoothStreamingCache to use the async/await pattern.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PlayerFramework.Adaptive.AdaptivePlugin.MediaPlayer">
+            <inheritdoc />
+        </member>
+        <member name="P:Microsoft.PlayerFramework.Adaptive.AdaptivePlugin.SSME">
+            <summary>
+            Gets the underlying SmoothStreamingMediaElement being used by this plugin.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PlayerFramework.Adaptive.AdaptivePlugin.MediaElement">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.PlayerFramework.Adaptive.AdaptiveStreamingManager.Initialize(Microsoft.Web.Media.SmoothStreaming.SmoothStreamingMediaElement)">
+            <summary>
+            Initializes the smooth streaming media element.
+            </summary>
+            <param name="ssme">The instance of the SmoothStreamingMediaElement to use</param>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.Adaptive.AdaptiveStreamingManager.Uninitialize">
+            <summary>
+            Uninitializes the smooth streaming media element.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.Adaptive.AdaptiveStreamingManager.RestrictTracks">
+            <summary>
+            Called from OnManifestReady to restrict video tracks. Windows Phone 7 has restrictions on which tracks are allowed. Override this function to change the default logic.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PlayerFramework.Adaptive.AdaptiveStreamingManager.CurrentSegment">
+            <summary>
+            Gets the segment from the adaptive manifest that is currently active
+            </summary>
+        </member>
+        <member name="P:Microsoft.PlayerFramework.Adaptive.AdaptiveStreamingManager.AutoRestrictTracks">
+            <summary>
+            Gets or sets whether to automatically restrict tracks unsuitable for platform and device. Sometimes the app knows best and should perform this duty itself.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PlayerFramework.Adaptive.AdaptiveStreamingManager.IsMultiResolutionVideoSupported">
+            <summary>
+            Determines if multiple resolutions are supported. Default is false.
+            </summary>
+        </member>
+        <member name="E:Microsoft.PlayerFramework.Adaptive.AdaptiveStreamingManager.StreamSelected">
+            <summary>
+            Occurs when a stream has been selected.
+            </summary>
+        </member>
+        <member name="E:Microsoft.PlayerFramework.Adaptive.AdaptiveStreamingManager.StreamUnselected">
+            <summary>
+            Occurs when a stream has been unselected.
+            </summary>
+        </member>
+        <member name="E:Microsoft.PlayerFramework.Adaptive.AdaptiveStreamingManager.StreamSelectionFailed">
+            <summary>
+            Occurs when the selection of a stream fails.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PlayerFramework.Adaptive.AudioStreamWrapper">
+            <summary>
+            Wraps a smooth streaming StreamInfo class to allow it to inherit AudioStream and participate in the player framework's audio selection APIs.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PlayerFramework.Adaptive.AudioStreamWrapper.AdaptiveAudioStream">
+            <summary>
+            Gets the underlying smooth streaming StreamInfo instance.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.Adaptive.OrderedObservableCollection`1.Add(`0,System.IComparable{`0})">
+            <summary>
+            add item
+            </summary>
+            <param name="item">the item to add</param>
+            <param name="comparable">the object to use for comparisons</param>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.Adaptive.OrderedObservableCollection`1.Insert(System.Int32,`0)">
+            <summary>
+            insert item into collection
+            </summary>
+            <param name="index">index to insert at</param>
+            <param name="item">item to insert</param>
+        </member>
+        <member name="T:Microsoft.AdaptiveStreaming.ILifetimeAwareDownloaderPlugin">
+            <summary>
+            Extends the IDownloaderPlugin interface to support noficiation when the stream is opened and closed
+            </summary>
+        </member>
+        <member name="M:Microsoft.AdaptiveStreaming.ILifetimeAwareDownloaderPlugin.OnOpenMedia(System.Uri)">
+            <summary>
+            Called when the IAdaptiveSource is opened.
+            </summary>
+            <param name="manifestUri">The Uri of the manifest being opened</param>
+        </member>
+        <member name="M:Microsoft.AdaptiveStreaming.ILifetimeAwareDownloaderPlugin.OnCloseMedia(System.Uri)">
+            <summary>
+            Called when the IAdaptiveSource is closed.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PlayerFramework.Adaptive.SmoothStreamingMediaElementWrapper">
+            <summary>
+            Provides a wrapper around the SmoothStreamingMediaElement to adapt it to the IMediaElement interface.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.Adaptive.SmoothStreamingMediaElementWrapper.#ctor">
+            <summary>
+            Creates a new instance of SmoothStreamingMediaElementWrapper
+            </summary>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.Adaptive.SmoothStreamingMediaElementWrapper.OnApplyTemplate">
+            <inheritdoc /> 
+        </member>
+        <member name="M:Microsoft.PlayerFramework.Adaptive.SmoothStreamingMediaElementWrapper.Microsoft#PlayerFramework#IMediaElement#SetSource(System.Windows.Media.MediaStreamSource)">
+            <inheritdoc /> 
+        </member>
+        <member name="P:Microsoft.PlayerFramework.Adaptive.SmoothStreamingMediaElementWrapper.TemplateAppliedTask">
+            <inheritdoc /> 
+        </member>
+        <member name="P:Microsoft.PlayerFramework.Adaptive.SmoothStreamingMediaElementWrapper.Microsoft#PlayerFramework#IMediaElement#CurrentState">
+            <inheritdoc /> 
+        </member>
+        <member name="E:Microsoft.PlayerFramework.Adaptive.SmoothStreamingMediaElementWrapper.Microsoft#PlayerFramework#IMediaElement#LogReady">
+            <inheritdoc /> 
+        </member>
+        <member name="P:Microsoft.PlayerFramework.Adaptive.SmoothStreamingMediaElementWrapper.Microsoft#PlayerFramework#IMediaElement#Source">
+            <inheritdoc /> 
+        </member>
+        <member name="P:Microsoft.PlayerFramework.Adaptive.SmoothStreamingMediaElementWrapper.Microsoft#PlayerFramework#IMediaElement#Position">
+            <inheritdoc /> 
+        </member>
+        <member name="E:Microsoft.PlayerFramework.Adaptive.SmoothStreamingMediaElementWrapper.MarkerReached">
+            <inheritdoc /> 
+        </member>
+        <member name="P:Microsoft.PlayerFramework.Adaptive.SmoothStreamingMediaElementWrapper.Markers">
+            <inheritdoc /> 
+        </member>
+    </members>
+</doc>
